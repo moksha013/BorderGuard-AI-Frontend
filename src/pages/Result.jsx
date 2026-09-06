@@ -364,37 +364,72 @@ function Result() {
           }`}
         >
           <span>📄</span>
-          {downloading ? 'Downloading...' : 'Export PDF Report'}
+          {downloading ? 'Downloading...' : 'Export Official PDF Report'}
         </button>
 
         <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
-          <button
-            type="button"
-            onClick={() => alert('Clearance approved. Passenger permitted entry.')}
-            className="rounded-lg bg-emerald-600 hover:bg-emerald-500 px-5 py-2 text-sm font-semibold text-white transition"
-          >
-            Approve Entry
-          </button>
+          {status === 'REJECT' ? (
+            /* ENFORCED PROTOCOL: ONLY ONE OPTION (REJECT) */
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
+              <span className="text-xs text-rose-500 font-semibold flex items-center gap-1.5 self-start sm:self-auto">
+                <span>🔒</span> Mandatory Security Rule: Clearance Locked
+              </span>
 
-          <button
-            type="button"
-            onClick={() => alert('Flagged for secondary inspection counter.')}
-            className={`rounded-lg px-5 py-2 text-sm font-semibold border transition ${
-              isDark
-                ? 'bg-gray-800 hover:bg-gray-700 text-gray-200 border-gray-700'
-                : 'bg-white hover:bg-gray-50 text-gray-700 border-gray-300 shadow-sm'
-            }`}
-          >
-            Secondary Inspection
-          </button>
+              <button
+                type="button"
+                onClick={() => alert('Entry Denied. Incident report logged and border security dispatched.')}
+                className="rounded-lg bg-red-600 hover:bg-red-500 px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-red-600/30 flex items-center justify-center gap-2 transition"
+              >
+                <span>⛔</span> Deny Entry & Detain
+              </button>
+            </div>
+          ) : status === 'REVIEW' ? (
+            /* REVIEW STATUS: ROUTE TO SECONDARY OR DENY */
+            <>
+              <button
+                type="button"
+                onClick={() => alert('Flagged for secondary inspection counter.')}
+                className={`rounded-lg px-5 py-2 text-sm font-semibold border transition ${
+                  isDark
+                    ? 'bg-amber-500/15 text-amber-400 border-amber-500/40 hover:bg-amber-500/25'
+                    : 'bg-amber-50 text-amber-700 border-amber-300 hover:bg-amber-100 shadow-sm'
+                }`}
+              >
+                Secondary Inspection
+              </button>
 
-          <button
-            type="button"
-            onClick={() => alert('Entry denied. Border police alerted.')}
-            className="rounded-lg bg-red-600 hover:bg-red-500 px-5 py-2 text-sm font-semibold text-white transition"
-          >
-            Deny Entry
-          </button>
+              <button
+                type="button"
+                onClick={() => alert('Entry denied. Border police alerted.')}
+                className="rounded-lg bg-red-600 hover:bg-red-500 px-5 py-2 text-sm font-semibold text-white transition"
+              >
+                Deny Entry
+              </button>
+            </>
+          ) : (
+            /* PASS STATUS: APPROVE OR OPTIONAL MANUAL REVIEW */
+            <>
+              <button
+                type="button"
+                onClick={() => alert('Clearance approved. Passenger permitted entry.')}
+                className="rounded-lg bg-emerald-600 hover:bg-emerald-500 px-5 py-2 text-sm font-semibold text-white transition shadow-sm"
+              >
+                Approve Entry
+              </button>
+
+              <button
+                type="button"
+                onClick={() => alert('Flagged for secondary inspection counter.')}
+                className={`rounded-lg px-5 py-2 text-sm font-semibold border transition ${
+                  isDark
+                    ? 'bg-gray-800 hover:bg-gray-700 text-gray-200 border-gray-700'
+                    : 'bg-white hover:bg-gray-50 text-gray-700 border-gray-300 shadow-sm'
+                }`}
+              >
+                Secondary Inspection
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
