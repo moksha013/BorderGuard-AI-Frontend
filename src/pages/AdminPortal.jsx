@@ -46,7 +46,7 @@ function AdminPortal() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="text-xs font-bold px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/30 uppercase">
-              Admin Command Console
+              System Administration
             </span>
             <span className="text-xs font-mono text-gray-500">Terminal Station #04</span>
           </div>
@@ -113,10 +113,10 @@ function AdminPortal() {
         <div className="flex items-center justify-between border-b pb-4 mb-5 border-inherit">
           <div>
             <h2 className="text-lg font-semibold">
-              Active Officer Performance & Roster
+              Officer Insights
             </h2>
             <p className={`text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-              Individual clearance metrics and activity logged per officer workstation
+              Individual Officer Activity & Clearance Overview
             </p>
           </div>
           <span className={`text-xs px-2.5 py-1 rounded-full border ${
@@ -206,10 +206,10 @@ function AdminPortal() {
         <div className="flex items-center justify-between border-b pb-4 mb-4 border-inherit">
           <div>
             <h2 className="text-lg font-semibold">
-              Station Security Alerts & Flagged Interceptions
+              Security Alerts & Anomaly Reports
             </h2>
             <p className={`text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-              Combined list of anomalous passenger events requiring supervisory awareness
+              Passenger anomalies requiring administrative attention
             </p>
           </div>
           <span className="text-xs px-2.5 py-0.5 rounded bg-red-500/10 text-red-500 border border-red-500/30 font-semibold">

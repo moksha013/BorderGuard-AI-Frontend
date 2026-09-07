@@ -66,7 +66,7 @@ function Analytics() {
           Analytics & Inspection Metrics
         </h1>
         <p className={`mt-1 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-          Aggregated performance insights across document checkpoints and computer vision modules.
+          Integrated Performance Insights Across Screening & Vision Modules
         </p>
       </div>
 

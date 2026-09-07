@@ -1,6 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
-import { AuthProvider } from './context/AuthContext'
+import { AuthProvider, useAuth } from './context/AuthContext'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 import Dashboard from './pages/Dashboard'
@@ -9,6 +9,31 @@ import Result from './pages/Result'
 import History from './pages/History'
 import Analytics from './pages/Analytics'
 import AdminPortal from './pages/AdminPortal'
+import Login from './pages/Login'
+
+function ProtectedRoute({ children, requireAdmin = false }) {
+  const { isAuthenticated, isAdmin } = useAuth()
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />
+  }
+
+  if (requireAdmin && !isAdmin) {
+    return <Navigate to="/" replace />
+  }
+
+  return children ? children : <Outlet />
+}
+
+function PublicRoute({ children }) {
+  const { isAuthenticated, isAdmin } = useAuth()
+
+  if (isAuthenticated) {
+    return <Navigate to={isAdmin ? '/admin' : '/'} replace />
+  }
+
+  return children
+}
 
 function MainLayout() {
   const { isDark } = useTheme()
@@ -21,14 +46,7 @@ function MainLayout() {
 
       <main className="flex-1 p-8">
         <Header />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/screening" element={<Screening />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/result" element={<Result />} />
-          <Route path="/admin" element={<AdminPortal />} />
-        </Routes>
+        <Outlet />
       </main>
     </div>
   )
@@ -39,7 +57,42 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <ThemeProvider>
-          <MainLayout />
+          <Routes>
+            {/* Public Login Route */}
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+
+            {/* Authenticated Application Routes */}
+            <Route
+              element={
+                <ProtectedRoute>
+                  <MainLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/screening" element={<Screening />} />
+              <Route path="/history" element={<History />} />
+              <Route path="/analytics" element={<Analytics />} />
+              <Route path="/result" element={<Result />} />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute requireAdmin={true}>
+                    <AdminPortal />
+                  </ProtectedRoute>
+                }
+              />
+              {/* Catch-all fallback */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Route>
+          </Routes>
         </ThemeProvider>
       </AuthProvider>
     </BrowserRouter>

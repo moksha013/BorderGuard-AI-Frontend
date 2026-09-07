@@ -111,7 +111,7 @@ export const OFFICER_STATS = {
     ]
   },
   admin: {
-    name: 'Chief Inspector Verma',
+    name: 'Chief Inspector',
     badge: 'ADM-01',
     totalScreened: 128,
     passed: 111,
