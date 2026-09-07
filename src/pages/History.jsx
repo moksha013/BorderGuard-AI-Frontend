@@ -1,75 +1,24 @@
 import { useState } from 'react'
 import { useTheme } from '../context/ThemeContext'
+import { useAuth } from '../context/AuthContext'
+import { ALL_SCREENING_RECORDS } from '../data/mockScreenings'
 
 function History() {
   const { isDark } = useTheme()
+  const { currentUser, isAdmin } = useAuth()
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('ALL')
 
-  const records = [
-    {
-      id: "BG-1042",
-      passenger: "Arjun Sharma",
-      document: "Passport (Z5839201)",
-      date: "05 Sep 2026, 14:32",
-      risk: 18,
-      status: "PASS"
-    },
-    {
-      id: "BG-1041",
-      passenger: "Michael Chen",
-      document: "Passport (E9201844)",
-      date: "05 Sep 2026, 13:15",
-      risk: 58,
-      status: "REVIEW"
-    },
-    {
-      id: "BG-1040",
-      passenger: "Elena Rostova",
-      document: "National ID (ID4091)",
-      date: "05 Sep 2026, 11:40",
-      risk: 82,
-      status: "REJECT"
-    },
-    {
-      id: "BG-1039",
-      passenger: "David Miller",
-      document: "Passport (P1104821)",
-      date: "04 Sep 2026, 19:22",
-      risk: 12,
-      status: "PASS"
-    },
-    {
-      id: "BG-1038",
-      passenger: "Amina Al-Mansoor",
-      document: "Passport (N8830192)",
-      date: "04 Sep 2026, 18:05",
-      risk: 22,
-      status: "PASS"
-    },
-    {
-      id: "BG-1037",
-      passenger: "Carlos Gomez",
-      document: "Passport (G3491022)",
-      date: "04 Sep 2026, 16:48",
-      risk: 74,
-      status: "REJECT"
-    },
-    {
-      id: "BG-1036",
-      passenger: "Priya Patel",
-      document: "Visa Sticker (V9012388)",
-      date: "04 Sep 2026, 15:10",
-      risk: 45,
-      status: "REVIEW"
-    }
-  ]
+  const baseRecords = isAdmin
+    ? ALL_SCREENING_RECORDS
+    : ALL_SCREENING_RECORDS.filter((r) => r.officerId === currentUser.id)
 
-  const filteredRecords = records.filter((r) => {
+  const filteredRecords = baseRecords.filter((r) => {
     const matchesSearch =
       r.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
       r.passenger.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      r.document.toLowerCase().includes(searchTerm.toLowerCase())
+      r.document.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (r.officerName && r.officerName.toLowerCase().includes(searchTerm.toLowerCase()))
 
     const matchesStatus =
       statusFilter === 'ALL' || r.status === statusFilter
@@ -81,11 +30,23 @@ function History() {
     <div className="space-y-8 max-w-6xl">
       {/* Page Header */}
       <div>
+        <div className="flex items-center gap-2 mb-1">
+          <span className={`text-[11px] font-bold px-2 py-0.5 rounded border uppercase ${
+            isAdmin
+              ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
+              : 'bg-yellow-400/10 text-yellow-500 border-yellow-400/30'
+          }`}>
+            {isAdmin ? '🛡️ Global Station Audit Trail' : `👮 ${currentUser.name} Audit Log`}
+          </span>
+        </div>
+
         <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
           Screening History & Audit Trail
         </h1>
         <p className={`mt-1 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-          Search and review historical passenger verification records and inspection decisions.
+          {isAdmin
+            ? 'Review combined historical passenger verification records across all active officers.'
+            : `Search and review passenger inspections logged during your active duty session.`}
         </p>
       </div>
 
@@ -145,6 +106,7 @@ function History() {
               <tr>
                 <th className="px-6 py-3.5 font-semibold">Screening ID</th>
                 <th className="px-6 py-3.5 font-semibold">Passenger Name</th>
+                {isAdmin && <th className="px-6 py-3.5 font-semibold">Inspected By</th>}
                 <th className="px-6 py-3.5 font-semibold">Travel Document</th>
                 <th className="px-6 py-3.5 font-semibold">Timestamp</th>
                 <th className="px-6 py-3.5 font-semibold">Risk Score</th>
@@ -170,6 +132,16 @@ function History() {
                       <td className={`px-6 py-4 font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>
                         {record.passenger}
                       </td>
+
+                      {isAdmin && (
+                        <td className="px-6 py-4">
+                          <span className={`inline-block px-2 py-0.5 rounded text-[11px] font-medium border ${
+                            isDark ? 'bg-gray-800 text-gray-300 border-gray-700' : 'bg-gray-100 text-gray-700 border-gray-200'
+                          }`}>
+                            {record.officerName}
+                          </span>
+                        </td>
+                      )}
 
                       <td className={`px-6 py-4 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                         {record.document}
@@ -199,8 +171,8 @@ function History() {
                 })
               ) : (
                 <tr>
-                  <td colSpan="6" className={`px-6 py-8 text-center ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-                    No matching screening records found.
+                  <td colSpan={isAdmin ? 7 : 6} className={`px-6 py-8 text-center ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                    No matching screening records found for this profile.
                   </td>
                 </tr>
               )}
@@ -211,8 +183,8 @@ function History() {
         <div className={`p-4 border-t flex items-center justify-between text-xs ${
           isDark ? 'border-gray-800 text-gray-500' : 'border-gray-200 text-gray-400'
         }`}>
-          <span>Showing {filteredRecords.length} of {records.length} records</span>
-          <span>Station Terminal #04 • Immutable Audit Trail</span>
+          <span>Showing {filteredRecords.length} records</span>
+          <span>Station Terminal #04 • {isAdmin ? 'Global Central Audit' : `${currentUser.badge} Session Audit`}</span>
         </div>
       </div>
     </div>

@@ -364,7 +364,7 @@ function Result() {
           }`}
         >
           <span>📄</span>
-          {downloading ? 'Downloading...' : 'Export Official PDF Report'}
+          {downloading ? 'Downloading...' : 'Export PDF Report'}
         </button>
 
         <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
@@ -372,7 +372,7 @@ function Result() {
             /* ENFORCED PROTOCOL: ONLY ONE OPTION (REJECT) */
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
               <span className="text-xs text-rose-500 font-semibold flex items-center gap-1.5 self-start sm:self-auto">
-                <span>🔒</span> Mandatory Security Rule: Clearance Locked
+                
               </span>
 
               <button
