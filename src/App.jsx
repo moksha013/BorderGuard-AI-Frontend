@@ -10,19 +10,26 @@ import History from './pages/History'
 import Analytics from './pages/Analytics'
 import AdminPortal from './pages/AdminPortal'
 import Login from './pages/Login'
+import AdminGate from './components/AdminGate'
 
-function ProtectedRoute({ children, requireAdmin = false }) {
-  const { isAuthenticated, isAdmin } = useAuth()
+function ProtectedRoute({ children }) {
+  const { isAuthenticated } = useAuth()
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />
   }
 
-  if (requireAdmin && !isAdmin) {
-    return <Navigate to="/" replace />
+  return children ? children : <Outlet />
+}
+
+function AdminProtectedPage() {
+  const { isAdmin } = useAuth()
+
+  if (!isAdmin) {
+    return <AdminGate />
   }
 
-  return children ? children : <Outlet />
+  return <AdminPortal />
 }
 
 function PublicRoute({ children }) {
@@ -81,14 +88,7 @@ function App() {
               <Route path="/history" element={<History />} />
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/result" element={<Result />} />
-              <Route
-                path="/admin"
-                element={
-                  <ProtectedRoute requireAdmin={true}>
-                    <AdminPortal />
-                  </ProtectedRoute>
-                }
-              />
+              <Route path="/admin" element={<AdminProtectedPage />} />
               {/* Catch-all fallback */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Route>

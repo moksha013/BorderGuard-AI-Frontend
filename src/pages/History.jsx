@@ -36,7 +36,7 @@ function History() {
               ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
               : 'bg-yellow-400/10 text-yellow-500 border-yellow-400/30'
           }`}>
-            {isAdmin ? '🛡️ Global Station Audit Trail' : `👮 ${currentUser.name} Audit Log`}
+            {isAdmin ? 'Global Station Audit Trail' : ` ${currentUser.name} Audit Log`}
           </span>
         </div>
 

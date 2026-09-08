@@ -25,7 +25,7 @@ function Dashboard() {
                 ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
                 : 'bg-yellow-400/10 text-yellow-500 border-yellow-400/30'
             }`}>
-              {isAdmin ? '🛡️ Central Supervisory View' : `👮 ${currentUser.name} Workspace`}
+              {isAdmin ? 'Central Supervisory View' : `👮 ${currentUser.name} Workspace`}
             </span>
             <span className="text-xs font-mono text-gray-500">Badge: {currentUser.badge}</span>
           </div>
@@ -57,7 +57,7 @@ function Dashboard() {
             : 'bg-purple-50 border-purple-200 text-purple-900'
         }`}>
           <div className="flex items-center gap-3">
-            <span className="text-2xl">🛡️</span>
+            <span className="text-2xl"></span>
             <div>
               <p className="text-xs font-bold">Admin Portal Active</p>
               <p className="text-[11px] opacity-90">

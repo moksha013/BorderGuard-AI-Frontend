@@ -90,12 +90,57 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('authenx_auth')
   }
 
+  // Password-verified switching between profiles (strictly required for Admin elevation)
+  const switchUserWithPassword = (targetUserId, password) => {
+    const target = USERS.find((u) => u.id === targetUserId)
+    if (!target) {
+      return { success: false, error: 'User profile not found.' }
+    }
+
+    if (target.id === currentUser?.id) {
+      return { success: true, user: target }
+    }
+
+    // Admins have supervisor clearance to view officer workspaces
+    if (currentUser?.role === 'admin' && target.role === 'officer') {
+      setCurrentUser(target)
+      localStorage.setItem('authenx_user_id', target.id)
+      return { success: true, user: target }
+    }
+
+    // All other switches (especially Officer -> Admin) strictly require password verification
+    const trimmedPass = (password || '').trim()
+    if (target.password !== trimmedPass && target.altPassword !== trimmedPass) {
+      return {
+        success: false,
+        error: `Incorrect password for ${target.name}. Access denied.`
+      }
+    }
+
+    setCurrentUser(target)
+    localStorage.setItem('authenx_user_id', target.id)
+    return { success: true, user: target }
+  }
+
+  // Secure legacy switcher: strictly blocks non-admin elevation without password
   const switchUser = (userId) => {
     const found = USERS.find((u) => u.id === userId)
-    if (found) {
+    if (!found) return false
+
+    // STRICT PROTECTION: An officer cannot silently switch to admin
+    if (found.role === 'admin' && currentUser?.role !== 'admin') {
+      console.warn('Unauthorized elevation attempt: Admin password required')
+      return false
+    }
+
+    // Allow supervisor to inspect officer profiles
+    if (currentUser?.role === 'admin') {
       setCurrentUser(found)
       localStorage.setItem('authenx_user_id', found.id)
+      return true
     }
+
+    return false
   }
 
   const isAdmin = currentUser?.role === 'admin'
@@ -109,6 +154,7 @@ export function AuthProvider({ children }) {
         login,
         logout,
         switchUser,
+        switchUserWithPassword,
         users: USERS
       }}
     >

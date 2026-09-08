@@ -6,7 +6,7 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
 **BorderGuard AI** is an intelligent border checkpoint screening platform designed to detect fraudulent identity travel documents, verify passenger biometric matches, and compute an **Explainable Risk Score** in real time. 
 
@@ -14,13 +14,13 @@ The frontend provides border security officers with an intuitive workstation int
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 ### 1. 🔍 Dual-Input Checkpoint Screening (`/screening`)
 - **Document Verification Box**: Drag-and-drop or file browser supporting passports, visas, and national identity cards.
 - **Live Identity Capture**: Real-time HTML5 webcam stream capture for passenger facial matching and liveness verification.
 
-### 2. 🧠 Explainable Risk Score Breakdown (`/result`)
+### 2. Explainable Risk Score Breakdown (`/result`)
 - Replaces black-box AI scores with a **transparent mathematical breakdown** explaining *why* a traveler was cleared or flagged:
   - **Module 1**: OCR extraction integrity.
   - **Module 2**: ICAO Doc 9303 checksum validation (7-3-1 weight check digits).

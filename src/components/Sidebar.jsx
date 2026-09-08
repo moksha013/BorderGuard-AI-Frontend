@@ -11,12 +11,12 @@ function Sidebar() {
     { to: '/', label: 'Dashboard' },
     { to: '/screening', label: 'New Screening' },
     { to: '/history', label: 'History' },
-    { to: '/analytics', label: 'Analytics' }
+    { to: '/analytics', label: 'Analytics' },
+    {
+      to: '/admin',
+      label: isAdmin ? 'Admin Oversight 🛡️' : 'Admin Portal 🔒'
+    }
   ]
-
-  if (isAdmin) {
-    links.push({ to: '/admin', label: 'Admin Oversight 🛡️' })
-  }
 
   return (
     <aside className={`w-64 min-h-screen border-r p-6 transition-colors flex flex-col justify-between ${
@@ -77,7 +77,7 @@ function Sidebar() {
                 : 'border-gray-200 text-gray-500 hover:text-red-600 hover:bg-red-50 hover:border-red-200'
             }`}
           >
-            🚪
+            
           </button>
         </div>
       </div>

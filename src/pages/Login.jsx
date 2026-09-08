@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
+import { Eye, EyeOff } from "lucide-react";
 
 function Login() {
   const { login, users } = useAuth()
@@ -84,18 +85,15 @@ function Login() {
               : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-100 shadow-sm'
           }`}
         >
-          <span>{isDark ? '☀️' : '🌙'}</span>
+          
           <span>{isDark ? 'Light' : 'Dark'}</span>
         </button>
       </div>
 
-      {/* Main Login Card */}
-      <div className="w-full max-w-md space-y-6">
+     <div className="w-full max-w-md space-y-6">
         {/* Brand Header */}
         <div className="text-center">
-          <div className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-yellow-400/10 border border-yellow-400/30 text-3xl mb-3 shadow-inner">
-            🛡️
-          </div>
+         
           <h1 className="text-3xl font-extrabold tracking-tight text-yellow-400">
             AuthenX
           </h1>
@@ -103,7 +101,7 @@ function Login() {
             Smarter Identity. Safer Access.
           </p>
           <p className={`text-sm mt-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-            Secure Border Control & Verification Terminal
+            
           </p>
         </div>
 
@@ -130,7 +128,7 @@ function Login() {
                   isDark ? 'text-gray-300' : 'text-gray-700'
                 }`}
               >
-                Officer / Admin Username
+                Username
               </label>
               <div className="relative">
                 <input
@@ -139,7 +137,7 @@ function Login() {
                   required
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="e.g. arjun or admin"
+                  placeholder="Enter your username"
                   className={`w-full rounded-lg px-3.5 py-2.5 text-sm border font-medium transition focus:outline-none focus:ring-2 focus:ring-yellow-400/50 ${
                     isDark
                       ? 'bg-gray-950 border-gray-700 text-white placeholder-gray-500 focus:border-yellow-400'
@@ -147,7 +145,7 @@ function Login() {
                   }`}
                 />
                 <span className="absolute right-3 top-2.5 text-gray-400 text-sm pointer-events-none">
-                  👤
+                
                 </span>
               </div>
             </div>
@@ -159,7 +157,7 @@ function Login() {
                   isDark ? 'text-gray-300' : 'text-gray-700'
                 }`}
               >
-                Access Password
+                Password
               </label>
               <div className="relative">
                 <input
@@ -168,7 +166,7 @@ function Login() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your security password"
+                  placeholder="Enter your password"
                   className={`w-full rounded-lg px-3.5 py-2.5 text-sm border font-medium transition focus:outline-none focus:ring-2 focus:ring-yellow-400/50 ${
                     isDark
                       ? 'bg-gray-950 border-gray-700 text-white placeholder-gray-500 focus:border-yellow-400'
@@ -181,7 +179,7 @@ function Login() {
                   aria-label={showPassword ? 'Hide password' : 'Show password'}
                   className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-200 text-xs transition"
                 >
-                  {showPassword ? '🙈' : '👁️'}
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
             </div>
@@ -199,7 +197,7 @@ function Login() {
               ) : (
                 <>
                   <span>Sign In to Terminal</span>
-                  <span>→</span>
+                  
                 </>
               )}
             </button>
