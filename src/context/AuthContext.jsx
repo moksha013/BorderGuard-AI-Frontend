@@ -7,8 +7,8 @@ export const USERS = [
     badge: 'BG-401',
     role: 'officer',
     title: 'Border Control Officer',
-    station: 'Checkpoint Delta-4',
-    avatar: '👮‍♂️',
+    
+    
     username: 'arjun',
     password: 'officer123',
     altPassword: 'password123'
@@ -19,8 +19,7 @@ export const USERS = [
     badge: 'BG-402',
     role: 'officer',
     title: 'Border Control Officer',
-    station: 'Checkpoint Delta-4',
-    avatar: '👮',
+    
     username: 'vikram',
     password: 'officer123',
     altPassword: 'password123'
@@ -31,8 +30,7 @@ export const USERS = [
     badge: 'HQ-ADMIN-01',
     role: 'admin',
     title: 'Station Administrator / Supervisor',
-    station: 'Checkpoint Delta-4',
-    avatar: '🛡️',
+   
     username: 'admin',
     password: 'admin123',
     altPassword: 'adminpassword'

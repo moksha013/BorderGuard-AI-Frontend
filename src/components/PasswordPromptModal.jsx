@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
+import { Eye, EyeOff } from "lucide-react";
 
 function PasswordPromptModal({ isOpen, targetUser, onClose, onSuccess }) {
   const { switchUserWithPassword } = useAuth()
@@ -58,15 +59,7 @@ function PasswordPromptModal({ isOpen, targetUser, onClose, onSuccess }) {
         {/* Header Icon & Title */}
         <div className="flex items-start justify-between pb-4 border-b border-inherit">
           <div className="flex items-center gap-3">
-            <div
-              className={`p-2.5 rounded-xl border text-2xl ${
-                isAdminElevation
-                  ? 'bg-purple-500/10 border-purple-500/30 text-purple-400'
-                  : 'bg-yellow-400/10 border-yellow-400/30 text-yellow-500'
-              }`}
-            >
-              {isAdminElevation ? '🛡️' : '🔐'}
-            </div>
+           
             <div>
               <h3 className="text-base font-bold">
                 {isAdminElevation ? 'Supervisor Clearance Required' : 'Authentication Required'}
@@ -175,7 +168,7 @@ function PasswordPromptModal({ isOpen, targetUser, onClose, onSuccess }) {
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
                 className="absolute right-3 top-2 text-gray-400 hover:text-gray-200 text-xs transition"
               >
-                {showPassword ? '🙈' : '👁️'}
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
           </div>
@@ -207,8 +200,8 @@ function PasswordPromptModal({ isOpen, targetUser, onClose, onSuccess }) {
                 </>
               ) : (
                 <>
-                  <span>Unlock & Switch</span>
-                  <span>→</span>
+                  <span>Login</span>
+                 
                 </>
               )}
             </button>

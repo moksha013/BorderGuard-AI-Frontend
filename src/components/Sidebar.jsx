@@ -14,7 +14,7 @@ function Sidebar() {
     { to: '/analytics', label: 'Analytics' },
     {
       to: '/admin',
-      label: isAdmin ? 'Admin Oversight 🛡️' : 'Admin Portal 🔒'
+      label: isAdmin ? 'Admin Oversight' : 'Admin Portal'
     }
   ]
 

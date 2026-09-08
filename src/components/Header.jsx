@@ -43,15 +43,13 @@ function Header() {
           }`} />
           <div>
             <div className="flex items-center gap-2">
-              <span className={`text-xs font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                {currentUser?.station || 'Checkpoint Delta-4'}
-              </span>
+              
               <span className={`text-[10px] font-bold px-2 py-0.5 rounded border uppercase ${
                 currentUser?.role === 'admin'
                   ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
                   : 'bg-yellow-400/10 text-yellow-500 border-yellow-400/30'
               }`}>
-                {currentUser?.role === 'admin' ? '🛡️ Admin Portal' : '👮 Officer Portal'}
+                {currentUser?.role === 'admin' ? 'Admin Portal' : 'Officer Portal'}
               </span>
             </div>
             <p className={`text-[11px] ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -79,7 +77,7 @@ function Header() {
             >
               {users.map((u) => (
                 <option key={u.id} value={u.id}>
-                  {u.avatar} {u.name} ({u.role === 'admin' ? 'Admin 🔒' : 'Officer'})
+                  {u.avatar} {u.name} ({u.role === 'admin' ? 'Admin' : 'Officer'})
                 </option>
               ))}
             </select>
@@ -96,7 +94,7 @@ function Header() {
                 : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-100 shadow-sm'
             }`}
           >
-            <span>{isDark ? '☀️' : '🌙'}</span>
+            
             <span>{isDark ? 'Light' : 'Dark'}</span>
           </button>
 
@@ -111,7 +109,7 @@ function Header() {
                 : 'bg-red-50 border-red-200 text-red-600 hover:bg-red-100 shadow-sm'
             }`}
           >
-            <span>🚪</span>
+            
             <span>Logout</span>
           </button>
         </div>

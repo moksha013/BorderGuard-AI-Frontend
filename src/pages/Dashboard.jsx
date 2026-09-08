@@ -70,7 +70,7 @@ function Dashboard() {
             to="/admin"
             className="text-xs font-bold underline hover:opacity-80 whitespace-nowrap"
           >
-            Go to Admin Oversight →
+            Go to Admin Oversight
           </Link>
         </div>
       )}
