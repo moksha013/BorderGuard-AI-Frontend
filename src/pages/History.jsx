@@ -56,9 +56,7 @@ function History() {
       }`}>
         {/* Search Input */}
         <div className="relative w-full sm:w-80">
-          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 text-sm">
-            🔍
-          </span>
+          
           <input
             type="text"
             value={searchTerm}

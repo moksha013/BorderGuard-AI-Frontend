@@ -70,9 +70,7 @@ function Login() {
       <div className="absolute top-6 left-6 right-6 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <div className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span className={`text-xs font-mono tracking-wider uppercase ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-            Checkpoint Delta-4 • Terminal #04 [Online]
-          </span>
+          
         </div>
 
         <button
@@ -209,9 +207,9 @@ function Login() {
               <span className={`text-[11px] font-bold uppercase tracking-wider ${
                 isDark ? 'text-gray-400' : 'text-gray-500'
               }`}>
-                ⚡ Quick Demo Access (Judges & Testing)
+                Quick Demo
               </span>
-              <span className="text-[10px] text-yellow-500 font-mono">1-Click Auto Fill</span>
+              <span className="text-[10px] text-yellow-500 font-mono">Click here to Auto Fill</span>
             </div>
 
             <div className="grid grid-cols-1 gap-2">
@@ -257,9 +255,7 @@ function Login() {
         </div>
 
         {/* Footer Security Notice */}
-        <p className={`text-center text-[11px] ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-          AuthenX Secure Terminal • Official SIH Checkpoint Simulation
-        </p>
+        
       </div>
     </div>
   )

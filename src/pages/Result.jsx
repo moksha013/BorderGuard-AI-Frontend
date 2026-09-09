@@ -135,7 +135,7 @@ function Result() {
             disabled={downloading}
             className="flex items-center gap-2 rounded-lg bg-yellow-400 hover:bg-yellow-300 px-4 py-2 text-xs font-bold text-black transition shadow-sm disabled:opacity-50"
           >
-            <span>📄</span>
+            
             {downloading ? 'Generating PDF...' : 'Download PDF'}
           </button>
         </div>
@@ -363,7 +363,7 @@ function Result() {
               : 'bg-white hover:bg-gray-50 text-gray-700 border-gray-300 shadow-sm'
           }`}
         >
-          <span>📄</span>
+          
           {downloading ? 'Downloading...' : 'Export PDF Report'}
         </button>
 

@@ -20,7 +20,7 @@ function AdminPortal() {
       passed: `${officer1.passed} (${officer1.passRate})`,
       review: officer1.needsReview,
       rejected: officer1.rejected,
-      avatar: '👮‍♂️'
+      
     },
     {
       id: 'officer_2',
@@ -31,7 +31,7 @@ function AdminPortal() {
       passed: `${officer2.passed} (${officer2.passRate})`,
       review: officer2.needsReview,
       rejected: officer2.rejected,
-      avatar: '👮'
+      
     }
   ]
 
@@ -67,7 +67,7 @@ function AdminPortal() {
               : 'bg-white hover:bg-gray-50 text-gray-700 border-gray-300 shadow-sm'
           }`}
         >
-          🖨 Export Station Summary
+          Export Station Summary
         </button>
       </div>
 
@@ -189,7 +189,7 @@ function AdminPortal() {
                           : 'bg-white hover:bg-gray-100 text-yellow-600 border-gray-300 shadow-sm'
                       }`}
                     >
-                      View Profile →
+                      View Profile
                     </button>
                   </td>
                 </tr>

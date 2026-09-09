@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
+import { Eye, EyeOff } from "lucide-react";
 
 function AdminGate({ onUnlocked }) {
   const { currentUser, switchUserWithPassword } = useAuth()
@@ -48,31 +49,21 @@ function AdminGate({ onUnlocked }) {
         <div className="flex items-center justify-between pb-4 mb-6 border-b border-inherit">
           <div className="flex items-center gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-amber-400 animate-pulse" />
-            <span className={`text-xs font-mono uppercase tracking-wider ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-              Restricted Area • Section #04
-            </span>
+            
           </div>
 
           <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/30 uppercase">
-            Supervisor Auth
+            Admin
           </span>
         </div>
 
         {/* Center Shield Icon */}
         <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-purple-500/10 border border-purple-500/30 text-3xl mb-3 shadow-inner">
-            🛡️
-          </div>
+          
           <h2 className="text-2xl font-bold tracking-tight">
             Supervisor Clearance Required
           </h2>
-          <p className={`mt-2 text-xs leading-relaxed max-w-md mx-auto ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-            You are currently authenticated as{' '}
-            <strong className={isDark ? 'text-white' : 'text-gray-900'}>
-              {currentUser?.name || 'Officer'}
-            </strong>{' '}
-            ({currentUser?.badge || 'ID'}). Access to the Central Administrative & Supervisory Console requires Chief Inspector authorization.
-          </p>
+        
         </div>
 
         {/* Current Officer vs Required Clearance Comparison */}
@@ -82,7 +73,7 @@ function AdminGate({ onUnlocked }) {
           }`}
         >
           <div className="flex items-center gap-2.5">
-            <span className="text-2xl">{currentUser?.avatar || '👮'}</span>
+            
             <div>
               <p className="text-xs font-semibold">{currentUser?.name}</p>
               <p className={`text-[11px] ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -126,7 +117,7 @@ function AdminGate({ onUnlocked }) {
                 onClick={handleQuickFill}
                 className="text-[10px] text-yellow-500 hover:text-yellow-400 underline font-mono cursor-pointer"
               >
-                Auto-fill demo (admin123)
+                Auto-fill demo
               </button>
             </div>
 
@@ -138,7 +129,7 @@ function AdminGate({ onUnlocked }) {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter admin password (e.g. admin123)..."
+                placeholder="Enter password"
                 className={`w-full rounded-lg px-3.5 py-2.5 text-sm border font-medium transition focus:outline-none focus:ring-2 focus:ring-yellow-400/50 ${
                   isDark
                     ? 'bg-gray-950 border-gray-700 text-white placeholder-gray-500 focus:border-yellow-400'
@@ -151,7 +142,7 @@ function AdminGate({ onUnlocked }) {
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
                 className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-200 text-xs transition"
               >
-                {showPassword ? '🙈' : '👁️'}
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
           </div>
@@ -167,7 +158,7 @@ function AdminGate({ onUnlocked }) {
                   : 'border-gray-300 text-gray-700 hover:bg-gray-100'
               }`}
             >
-              ← Back to Officer Dashboard
+              Back to Officer Dashboard
             </button>
 
             <button
@@ -183,7 +174,7 @@ function AdminGate({ onUnlocked }) {
               ) : (
                 <>
                   <span>Unlock Admin Console</span>
-                  <span>→</span>
+                 
                 </>
               )}
             </button>

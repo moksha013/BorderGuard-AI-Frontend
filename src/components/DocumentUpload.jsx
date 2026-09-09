@@ -68,7 +68,7 @@ function DocumentUpload({ onFileSelect }) {
                 ? 'border-gray-700 bg-gray-950/50 hover:border-gray-500'
                 : 'border-gray-300 bg-gray-50/50 hover:border-gray-400'
             }`}>
-              <span className="text-3xl text-gray-400">📄</span>
+              
               <p className="mt-3 text-sm font-medium">
                 Choose a document file
               </p>
@@ -93,9 +93,7 @@ function DocumentUpload({ onFileSelect }) {
         </div>
       </div>
 
-      <p className={`mt-4 text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-        Supports ICAO Doc 9303 passports and standard national identity cards.
-      </p>
+      
     </div>
   )
 }

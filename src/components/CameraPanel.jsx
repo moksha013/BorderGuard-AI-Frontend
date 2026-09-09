@@ -94,7 +94,7 @@ function CameraPanel({ onCapture }) {
               />
             ) : (
               <div className="text-center p-6 text-gray-400">
-                <span className="text-3xl">📷</span>
+                
                 <p className="mt-2 text-sm">Camera is currently off</p>
                 <button
                   type="button"
@@ -148,9 +148,7 @@ function CameraPanel({ onCapture }) {
         </div>
       </div>
 
-      <p className={`mt-4 text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-        Live camera snapshot is compared against the document photograph.
-      </p>
+     
     </div>
   )
 }

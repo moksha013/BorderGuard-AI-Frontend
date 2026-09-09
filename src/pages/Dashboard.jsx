@@ -25,7 +25,7 @@ function Dashboard() {
                 ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
                 : 'bg-yellow-400/10 text-yellow-500 border-yellow-400/30'
             }`}>
-              {isAdmin ? 'Central Supervisory View' : `👮 ${currentUser.name} Workspace`}
+              {isAdmin ? 'Central Supervisory View' : ` ${currentUser.name} Workspace`}
             </span>
             <span className="text-xs font-mono text-gray-500">Badge: {currentUser.badge}</span>
           </div>
@@ -98,7 +98,7 @@ function Dashboard() {
             to="/history"
             className="text-xs font-semibold text-yellow-500 hover:underline"
           >
-            View All History →
+            View All History
           </Link>
         </div>
 

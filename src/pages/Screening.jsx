@@ -111,7 +111,7 @@ function Screening() {
           Document Screening
         </h1>
         <p className={`mt-1 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-          Upload the travel document and capture a live passenger image to begin identity screening.
+          Upload a valid document and capture a live passenger image to begin identity screening.
         </p>
       </div>
 
@@ -142,7 +142,7 @@ function Screening() {
                   : 'bg-gray-100 text-gray-600 border-gray-200 hover:bg-gray-200'
               }`}
             >
-              ✓ Genuine (Pass)
+              Genuine (Pass)
             </button>
             <button
               type="button"
@@ -155,7 +155,7 @@ function Screening() {
                   : 'bg-gray-100 text-gray-600 border-gray-200 hover:bg-gray-200'
               }`}
             >
-              ⚠ Forged Document (Reject)
+              Forged Document (Reject)
             </button>
           </div>
         </div>
