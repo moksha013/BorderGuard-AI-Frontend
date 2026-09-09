@@ -209,7 +209,7 @@ function Result() {
         }`}>
           <div className="flex items-center justify-between">
             <span className={`text-xs font-semibold uppercase tracking-wide ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-              Module 1: OCR Extraction
+              OCR Extraction
             </span>
             <span className="text-xs font-medium text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded">
               ✓ {modules?.ocr?.status || 'Passed'}
@@ -226,7 +226,7 @@ function Result() {
         }`}>
           <div className="flex items-center justify-between">
             <span className={`text-xs font-semibold uppercase tracking-wide ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-              Module 2: Document Validation
+              Document Validation
             </span>
             <span className="text-xs font-medium text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded">
               ✓ {modules?.validation?.status || 'Passed'}
@@ -243,7 +243,7 @@ function Result() {
         }`}>
           <div className="flex items-center justify-between">
             <span className={`text-xs font-semibold uppercase tracking-wide ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-              Module 3: Tampering Detection
+              Tampering Detection
             </span>
             <span className="text-xs font-medium text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded">
               ✓ {modules?.tampering?.status || 'No Issues'}
@@ -260,7 +260,7 @@ function Result() {
         }`}>
           <div className="flex items-center justify-between">
             <span className={`text-xs font-semibold uppercase tracking-wide ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-              Module 4: Face Verification
+              Face Verification
             </span>
             <span className="text-xs font-medium text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded">
               ✓ {modules?.face?.status || 'Match Confirmed'}
@@ -285,9 +285,7 @@ function Result() {
               Transparent audit showing how each factor mathematically contributed to the {riskScore}% risk score.
             </p>
           </div>
-          <span className="text-xs font-medium text-yellow-500 bg-yellow-400/10 px-2.5 py-1 rounded border border-yellow-400/20">
-            Transparent AI
-          </span>
+          
         </div>
 
         <div className="mt-5 overflow-x-auto">
